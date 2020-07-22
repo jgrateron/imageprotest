@@ -39,4 +39,4 @@ Esto es un conjunto de aplicaciones en javascript "nodejs" para verificar las va
 
 # Comentarios y sugerencias
 
-Jairo Graterón jgrateron@gmail.com Barquisimeto, Venezuela
+Jairo Graterón jgrateron@gmail.com

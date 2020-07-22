@@ -1,3 +1,5 @@
+//creado por Jairo Grateron jgrateron@gmail.com
+
 const axios = require('axios');
 const fs = require('fs');
 const user = "user";

@@ -36,3 +36,7 @@ Esto es un conjunto de aplicaciones en javascript "nodejs" para verificar las va
 - En otra consola ejecutar todos los test en paralelo
 
 - ./test.sh
+
+# Comentarios y sugerencias
+
+Jairo Graterón jgrateron@gmail.com Barquisimeto, Venezuela

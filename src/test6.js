@@ -1,7 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
+const user = "user";
+const password = "123456";
 
-var url = "http://192.168.1.94:9090/api/v1/crop"
+var url = "http://localhost:8080/api/v1/crop"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
@@ -21,6 +23,12 @@ function crop (name, urlimg, x, y, width, height)
             "width" : width,
             "height" : height,
             "urlimg" : urlimg
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == true) {
@@ -48,6 +56,6 @@ function crop (name, urlimg, x, y, width, height)
     })
 }
 
-crop("test501","http://192.168.1.93:8080/jpg/huge.jpg","4252","2930","200","200")
-crop("test502","https://icdn3.digitaltrends.com/image/digitaltrends_es/dell-g5-se-02-768x768.jpg","0","0","600","500")
+crop("test501","http://localhost:8081/jpg/huge.jpg","4252","2930","200","200")
+crop("test502","http://localhost:8081/jpg/huge.jpg","0","0","600","500")
 

@@ -1,7 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
+const user = "user";
+const password = "123456";
 
-var url = "http://192.168.1.94:9090/api/v1/rotate"
+var url = "http://localhost:8080/api/v1/rotate"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
@@ -21,6 +23,12 @@ function rotate (name, filesrc, angle, color)
             "angle" : angle,
             "b64img" : contentImg,
             "color" : color
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == true) {
@@ -57,6 +65,12 @@ function norotate (name, filesrc, angle, color)
             "angle" : angle,
             "b64img" : contentImg,
             "color" : color
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == false) {
@@ -75,25 +89,6 @@ function norotate (name, filesrc, angle, color)
         })
     })
 }
-/*
-let angle = 0;
-while (angle <= 360)
-{
-    let name = "";
-    if (angle < 10)    {
-        name = "00" + angle;
-    }
-    else
-    if (angle < 100)    {
-        name = "0" + angle;
-    }
-    else {
-        name = angle;
-    }
-    rotate("test" + name,"public/jpg/13640.jpg",angle);
-    angle = angle + 1;
-}
-*/
 
 rotate("test201","public/jpg/13640.jpg","10","16777215")
 rotate("test202","public/jpg/13640.jpg","20","0")

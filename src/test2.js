@@ -1,7 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
+const user = "user";
+const password = "123456";
 
-var url = "http://192.168.1.94:9090/api/v1/resize"
+var url = "http://localhost:8080/api/v1/resize"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
@@ -22,6 +24,12 @@ function resize(name,urlimg,width,height,typesize,stretch)
             "typesize" : typesize,
             "stretch" : stretch,
             "urlimg" : urlimg
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == true) {
@@ -59,6 +67,12 @@ function noresize(name,urlimg,width,height,typesize,stretch)
             "typesize" : typesize,
             "stretch" : stretch,
             "urlimg" : urlimg
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == false) {
@@ -79,28 +93,28 @@ function noresize(name,urlimg,width,height,typesize,stretch)
 }
 
 //resize una imagen a 200x200
-resize("test101","http://192.168.1.93:8080/jpg/13640.jpg","200","200","px","true")
+resize("test101","http://192.168.1.93:8081/jpg/13640.jpg","200","200","px","true")
 
 //resize una imagen a 200 de width y el height se mantiene igual
-resize("test102","http://192.168.1.93:8080/jpg/13640.jpg","200","","px","true")
+resize("test102","http://192.168.1.93:8081/jpg/13640.jpg","200","","px","true")
 
 //resize una imagen a 200 de height y el width se mantiene igual
-resize("test103","http://192.168.1.93:8080/jpg/13640.jpg","","200","px","true")
+resize("test103","http://192.168.1.93:8081/jpg/13640.jpg","","200","px","true")
 
 //resize una imagen a 200 de width y no se hace estiramiento
-resize("test104","http://192.168.1.93:8080/jpg/13640.jpg","200","","px","false")
+resize("test104","http://192.168.1.93:8081/jpg/13640.jpg","200","","px","false")
 
 //resize una imagen a 200 de height y no se hace estiramiento
-resize("test105","http://192.168.1.93:8080/jpg/13640.jpg","","200","px","false")
+resize("test105","http://192.168.1.93:8081/jpg/13640.jpg","","200","px","false")
 
 //resize una imagen a 50% de width y no se hace estiramiento
-resize("test106","http://192.168.1.93:8080/jpg/43123.jpg","50","","%","false")
+resize("test106","http://192.168.1.93:8081/jpg/43123.jpg","50","","%","false")
 
 //resize una imagen a 50% de height y no se hace estiramiento
-resize("test107","http://192.168.1.93:8080/jpg/43123.jpg","","50","%","false")
+resize("test107","http://192.168.1.93:8081/jpg/43123.jpg","","50","%","false")
 
 //no es una imagen valida
-noresize("test108","http://192.168.1.93:8080/pdf/paper.pdf","200","200","px","true")
+noresize("test108","http://192.168.1.93:8081/pdf/paper.pdf","200","200","px","true")
 
 //no es una imagen valida
-noresize("test109","http://192.168.1.93:8080/pdf/documento.pdf","200","200","px","true")
+noresize("test109","http://192.168.1.93:8081/pdf/documento.pdf","200","200","px","true")

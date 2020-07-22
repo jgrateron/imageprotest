@@ -1,7 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
+const user = "user";
+const password = "123456";
 
-var url = "http://192.168.1.94:9090/api/v1/crop"
+var url = "http://localhost:8080/api/v1/crop"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
@@ -23,6 +25,12 @@ function crop (name, filesrc, x, y, width, height)
             "width" : width,
             "height" : height,
             "b64img" : contentImg
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == true) {
@@ -51,3 +59,4 @@ function crop (name, filesrc, x, y, width, height)
 }
 
 crop("test401","public/jpg/huge.jpg","4252","2930","200","200")
+crop("test402","public/jpg/huge.jpg","0","0","600","500")

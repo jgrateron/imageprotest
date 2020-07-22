@@ -1,7 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
+const user = "user";
+const password = "123456";
 
-var url = "http://192.168.1.94:9090/api/v1/resize"
+var url = "http://localhost:8080/api/v1/resize"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
@@ -23,8 +25,14 @@ function resize(name,filesrc,width,height,typesize,stretch)
             "height" : height,
             "typesize" : typesize,
             "stretch" : stretch,
-            "b64img" : contentImg
-        })
+            "b64img" : contentImg   
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
+        })       
         .then((response) => {
             if (response.data.success == true) {
                 let data = response.data.imagen;
@@ -64,6 +72,12 @@ function noresize(name,filesrc,width,height,typesize,stretch)
             "typesize" : typesize,
             "stretch" : stretch,
             "b64img" : contentImg
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == false) {
@@ -140,3 +154,6 @@ noresize("test018","public/jpg/13640.jpg","200","200","px","verdadero");
 
 //resize una imagen PNG a 50% de height y no se hace estiramiento
 resize("test019","public/png/43123.png","80","","%","false");
+
+//resize una imagen PNG a 50% de height y no se hace estiramiento
+resize("test020","public/png/43123.png","50","50","%","false");

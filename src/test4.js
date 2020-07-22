@@ -1,7 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
+const user = "user";
+const password = "123456";
 
-var url = "http://192.168.1.94:9090/api/v1/rotate"
+var url = "http://localhost:8080/api/v1/rotate"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
@@ -19,6 +21,12 @@ function rotate (name, urlimg, angle, color)
             "angle" : angle,
             "urlimg" : urlimg,
             "color" : color
+        },
+        {
+            auth : {
+                username : user,
+                password : password
+            }
         })
         .then((response) => {
             if (response.data.success == true) {
@@ -46,6 +54,6 @@ function rotate (name, urlimg, angle, color)
     })
 }
 
-rotate("test301","http://192.168.1.93:8080/jpg/13640.jpg","10","0")
-rotate("test302","http://192.168.1.93:8080/jpg/13640.jpg","15","16777215")
-rotate("test303","http://192.168.1.93:8080/jpg/13640.jpg","20","16777215")
+rotate("test301","http://localhost:8081/jpg/13640.jpg","10","0")
+rotate("test302","http://localhost:8081/jpg/13640.jpg","15","16777215")
+rotate("test303","http://localhost:8081/jpg/13640.jpg","20","16777215")

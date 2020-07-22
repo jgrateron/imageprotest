@@ -1,3 +1,4 @@
+mkdir -p output
 rm output/*.jpg
 rm output/*.jpeg
 rm output/*.png

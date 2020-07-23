@@ -5,7 +5,7 @@ const fs = require('fs');
 const user = "user";
 const password = "123456";
 
-var url = "http://localhost:8080/api/v1/crop"
+var url = "https://localhost:8443/api/v1/crop"
 
 function mensaje_ok(mensaje) {
     console.info("\x1b[32m", "A " + mensaje, "\x1b[0m");
